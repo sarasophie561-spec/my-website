@@ -3,259 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magical Meal Tracker</title>
-<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin:0;
-    font-family: 'Shadows Into Light', cursive;
-    background: linear-gradient(135deg, #ffd3e2, #fff0b3, #d3fff4);
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  h1 {
-    margin-top: 20px;
-    font-size: 3rem;
-    color: #ff8dbb;
-    text-align:center;
-  }
-
-  .encouragement {
-    margin: 5px 0 25px 0;
-    font-size: 1.3rem;
-    color: #ff6f91;
-    text-align:center;
-  }
-
-  .container {
-    width: 90%;
-    max-width: 1400px;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 30px;
-    padding-bottom:50px;
-  }
-  @media(max-width:900px){ .container{grid-template-columns:1fr;} }
-
-  .meal-card {
-    background: rgba(255,255,255,0.9);
-    border-radius: 25px;
-    padding: 25px;
-    box-shadow: 0 12px 35px rgba(72,150,235,0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-
-  svg.sticker {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
-  }
-
-  h2 {
-    margin: 0 0 15px 0;
-    font-size: 2rem;
-    color: #ff69b4;
-  }
-
-  .meal-input {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .meal-input input {
-    flex: 1;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.1);
-    font-size: 16px;
-    background: rgba(255,255,255,0.95);
-  }
-
-  .meal-input button {
-    padding: 12px 20px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(135deg, #ff9de2, #ffc3a0);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.12s ease;
-  }
-  .meal-input button:active{transform:translateY(2px) scale(.995);}
-
-  .meal-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  .meal-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255,255,255,0.95);
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-
-  .meal-item button {
-    background: transparent;
-    border: none;
-    color: #ff5a7c;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  #confettiCanvas {
-    position: fixed;
-    left:0; top:0;
-    width:100vw; height:100vh;
-    pointer-events:none;
-    z-index: 9999;
-  }
-</style>
+<title>Mood Alchemy Lab Deluxe</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Magical Meal Tracker</h1>
-<div class="encouragement">I'm proud of you, keep going 💖</div>
-
 <div class="container">
+  <h1>🔮 Mood Alchemy Lab Deluxe</h1>
 
-  <!-- BREAKFAST -->
-  <div class="meal-card" id="breakfastCard">
-    <!-- pastel star SVG -->
-    <svg class="sticker" viewBox="0 0 64 64"><polygon fill="#ff9de2" points="32,4 39,24 60,24 42,38 48,58 32,46 16,58 22,38 4,24 25,24"/></svg>
-    <h2>Breakfast</h2>
-    <div class="meal-input">
-      <input placeholder="What did you eat for breakfast?">
-      <button>Add</button>
+  <!-- Question Pages -->
+  <div id="questionContainer">
+
+    <div class="question-box active">
+      <p1️⃣ What are you feeling right now?</p>
+      <textarea class="answer" placeholder="Type your feelings..."></textarea>
+      <button class="nextBtn">Next</button>
     </div>
-    <div class="meal-list"></div>
+
+    <div class="question-box">
+      <p>2️⃣ Choose your dominant emotions:</p>
+      <div class="crystalContainer">
+        <div class="crystal" data-emotion="happy" style="background-color:#FFD700;">😊</div>
+        <div class="crystal" data-emotion="sad" style="background-color:#1E90FF;">😢</div>
+        <div class="crystal" data-emotion="angry" style="background-color:#FF4500;">😡</div>
+        <div class="crystal" data-emotion="anxious" style="background-color:#9370DB;">😰</div>
+        <div class="crystal" data-emotion="relaxed" style="background-color:#00FA9A;">😌</div>
+        <div class="crystal" data-emotion="lonely" style="background-color:#FF69B4;">😔</div>
+        <div class="crystal" data-emotion="grateful" style="background-color:#FFA500;">🙏</div>
+      </div>
+      <button class="nextBtn">Next</button>
+    </div>
+
+    <div class="question-box">
+      <p>3️⃣ What would you like to release today?</p>
+      <textarea class="answer" placeholder="Type what you want to let go..."></textarea>
+      <button class="finishBtn">Mix Potion</button>
+    </div>
+
   </div>
 
-  <!-- LUNCH -->
-  <div class="meal-card" id="lunchCard">
-    <!-- pastel heart SVG -->
-    <svg class="sticker" viewBox="0 0 64 64"><path fill="#ffb3c6" d="M32 58s-26-15.6-26-34a14 14 0 0 1 28 0 14 14 0 0 1 28 0c0 18.4-26 34-26 34z"/></svg>
-    <h2>Lunch</h2>
-    <div class="meal-input">
-      <input placeholder="What did you eat for lunch?">
-      <button>Add</button>
-    </div>
-    <div class="meal-list"></div>
+  <!-- Cauldron Area -->
+  <div id="cauldronArea">
+    <div id="cauldron">🧪</div>
   </div>
 
-  <!-- DINNER -->
-  <div class="meal-card" id="dinnerCard">
-    <!-- pastel flower SVG -->
-    <svg class="sticker" viewBox="0 0 64 64"><circle cx="32" cy="32" r="8" fill="#fff0b3"/><circle cx="32" cy="12" r="8" fill="#ffe4b5"/><circle cx="32" cy="52" r="8" fill="#ffd1dc"/><circle cx="12" cy="32" r="8" fill="#c1f7d5"/><circle cx="52" cy="32" r="8" fill="#b5d8ff"/></svg>
-    <h2>Dinner</h2>
-    <div class="meal-input">
-      <input placeholder="What did you eat for dinner?">
-      <button>Add</button>
-    </div>
-    <div class="meal-list"></div>
+  <!-- Final Transformation -->
+  <div id="finalPage" class="hidden">
+    <div id="transformation">✨🍵✨</div>
+    <div id="finalText"></div>
   </div>
-
-  <!-- SNACKS -->
-  <div class="meal-card" id="snacksCard">
-    <!-- pastel sparkle SVG -->
-    <svg class="sticker" viewBox="0 0 64 64"><polygon fill="#d3fff4" points="32,8 36,24 52,28 36,32 32,48 28,32 12,28 28,24"/></svg>
-    <h2>Snacks</h2>
-    <div class="meal-input">
-      <input placeholder="What did you eat for snacks?">
-      <button>Add</button>
-    </div>
-    <div class="meal-list"></div>
-  </div>
-
 </div>
 
-<canvas id="confettiCanvas"></canvas>
-
-<script>
-const meals = [
-  {card:'breakfastCard'},
-  {card:'lunchCard'},
-  {card:'dinnerCard'},
-  {card:'snacksCard'}
-];
-
-meals.forEach(m => {
-  const card = document.getElementById(m.card);
-  const input = card.querySelector('input');
-  const btn = card.querySelector('button');
-  const list = card.querySelector('.meal-list');
-
-  btn.addEventListener('click', ()=>addItem());
-  input.addEventListener('keydown', e => { if(e.key==='Enter') addItem(); });
-
-  function addItem(){
-    const text = input.value.trim();
-    if(!text) return;
-    const item = document.createElement('div');
-    item.className='meal-item';
-    item.innerHTML = `<span>${text}</span><button>✕</button>`;
-    list.prepend(item);
-    item.querySelector('button').addEventListener('click', ()=>item.remove());
-    input.value='';
-    fireConfetti();
-  }
-});
-
-const canvas = document.getElementById('confettiCanvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-function resizeCanvas(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
-window.addEventListener('resize', resizeCanvas); resizeCanvas();
-
-class Particle {
-  constructor(x,y){
-    this.x=x; this.y=y;
-    this.vx=Math.random()*6-3;
-    this.vy=Math.random()*-8-2;
-    this.size=Math.random()*8+4;
-    this.color=`hsl(${Math.random()*360},80%,70%)`;
-    this.life=Math.random()*60+60;
-  }
-  step(){this.vy+=0.2; this.x+=this.vx; this.y+=this.vy; this.life--;}
-  draw(){ctx.fillStyle=this.color; ctx.fillRect(this.x,this.y,this.size,this.size);}
-}
-
-let animRunning=false;
-function fireConfetti(){
-  const x=Math.random()*canvas.width;
-  const y=Math.random()*canvas.height/2;
-  for(let i=0;i<40;i++) particles.push(new Particle(x,y));
-  if(!animRunning){animRunning=true; requestAnimationFrame(loop);}
-}
-function loop(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let i=particles.length-1;i>=0;i--){
-    const p=particles[i]; p.step(); p.draw();
-    if(p.life<=0) particles.splice(i,1);
-  }
-  if(particles.length>0) requestAnimationFrame(loop);
-  else animRunning=false;
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
